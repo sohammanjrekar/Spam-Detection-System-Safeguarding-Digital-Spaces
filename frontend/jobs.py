@@ -33,21 +33,21 @@ def preprocess_text(text):
 
 # Create the Streamlit app
 def main():
-    st.title("Spam Detection in SMS")
+    st.title("Spam Detection in Job Post")
     image = Image.open('images/sms.png')
 
     # columns
     # no inputs from the user
     col1, col2 = st.columns(2)
     with col1:
-        st.image(image, caption='Spam Detection in SMS', width=200)
+        st.image(image, caption='Spam Detection in Job Post', width=200)
     with col2:
         # Input text box
-        user_input = st.text_area("Enter an SMS message:")
+        user_input = st.text_area("Enter a Job Post:")
 
     if st.button("Predict"):
         if user_input.strip() == "":
-            st.warning("Please enter an SMS message.")
+            st.warning("Please enter a Job Post.")
         else:
             # Preprocess the user input
             preprocessed_input = preprocess_text(user_input)

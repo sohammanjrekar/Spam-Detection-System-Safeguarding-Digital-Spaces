@@ -6,10 +6,10 @@ from nltk.tokenize import word_tokenize
 from PIL import Image
 
 # Load the pre-trained TF-IDF vectorizer
-tfidf_vectorizer = joblib.load('models/sms/tfidf_vectorizer.sav')
+tfidf_vectorizer = joblib.load('models/newsTfidfVectorizer.sav')
 
 # Load the pre-trained ensemble model
-ensemble_model = joblib.load('models/sms/ensemble_model1.sav')
+ensemble_model = joblib.load('models/newsmodel.sav')
 
 # Preprocess the text data
 def preprocess_text(text):
@@ -33,21 +33,21 @@ def preprocess_text(text):
 
 # Create the Streamlit app
 def main():
-    st.title("Spam Detection in SMS")
+    st.title("Spam Detection in News Post")
     image = Image.open('sms.png')
 
     # columns
     # no inputs from the user
     col1, col2 = st.columns(2)
     with col1:
-        st.image(image, caption='Spam Detection in SMS', width=200)
+        st.image(image, caption='Spam Detection in News Post', width=200)
     with col2:
         # Input text box
-        user_input = st.text_area("Enter an SMS message:")
+        user_input = st.text_area("Enter an News Post:")
 
     if st.button("Predict"):
         if user_input.strip() == "":
-            st.warning("Please enter an SMS message.")
+            st.warning("Please enter an News Post.")
         else:
             # Preprocess the user input
             preprocessed_input = preprocess_text(user_input)
