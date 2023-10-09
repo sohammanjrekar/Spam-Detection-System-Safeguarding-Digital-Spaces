@@ -32,9 +32,9 @@ def preprocess_text(text):
     return text
 
 # Create the Streamlit app
-def main():
+def news_main():
     st.title("Spam Detection in News Post")
-    image = Image.open('sms.png')
+    image = Image.open('images/sms.png')
 
     # columns
     # no inputs from the user
@@ -70,5 +70,4 @@ def predict_ensemble(input_vector):
     ensemble_predictions = ensemble_model.predict(input_vector)
     return ensemble_predictions.astype(int)
 
-if __name__ == '__main__':
-    main()
+

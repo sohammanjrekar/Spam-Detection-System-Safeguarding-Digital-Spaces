@@ -9,7 +9,7 @@ from PIL import Image
 tfidf_vectorizer = joblib.load('models/twitterTfidfVectorizer.sav')
 
 # Load the pre-trained ensemble model
-ensemble_model = joblib.load('models/twitterTfidfVectorizer.sav')
+ensemble_model = joblib.load('models/twittermodel.sav')
 
 # Preprocess the text data
 def preprocess_text(text):
@@ -32,9 +32,9 @@ def preprocess_text(text):
     return text
 
 # Create the Streamlit app
-def main():
+def twitter_main():
     st.title("Spam Detection in Twitter Post")
-    image = Image.open('sms.png')
+    image = Image.open('images/sms.png')
 
     # columns
     # no inputs from the user
@@ -60,7 +60,8 @@ def main():
 
             # Display the prediction result
             st.subheader("Prediction Result:")
-            if ensemble_predictions == 1:
+            prediction_label = predict_ensemble(input_vector)[0]
+            if prediction_label == 'Spam':
                 st.error("Spam")
             else:
                 st.success("Not Spam")
@@ -68,7 +69,6 @@ def main():
 # Make predictions using the pre-trained ensemble model
 def predict_ensemble(input_vector):
     ensemble_predictions = ensemble_model.predict(input_vector)
-    return ensemble_predictions.astype(int)
+    return ensemble_predictions
 
-if __name__ == '__main__':
-    main()
+

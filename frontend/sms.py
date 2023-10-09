@@ -1,9 +1,14 @@
+# sms.py
 import streamlit as st
 import joblib
 import string
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from PIL import Image
+import nltk  # Import the nltk library
+
+# Download the stopwords dataset
+nltk.download('stopwords')
 
 # Load the pre-trained TF-IDF vectorizer
 tfidf_vectorizer = joblib.load('models/smsTfidfVectorizer1.sav')
@@ -31,8 +36,12 @@ def preprocess_text(text):
 
     return text
 
-# Create the Streamlit app
-def main():
+# Make predictions using the pre-trained ensemble model
+def predict_ensemble(input_vector):
+    ensemble_predictions = ensemble_model.predict(input_vector)
+    return ensemble_predictions.astype(int)
+
+def sms_main():
     st.title("Spam Detection in SMS")
     image = Image.open('images/sms.png')
 
@@ -64,11 +73,3 @@ def main():
                 st.error("Spam")
             else:
                 st.success("Not Spam")
-
-# Make predictions using the pre-trained ensemble model
-def predict_ensemble(input_vector):
-    ensemble_predictions = ensemble_model.predict(input_vector)
-    return ensemble_predictions.astype(int)
-
-if __name__ == '__main__':
-    main()

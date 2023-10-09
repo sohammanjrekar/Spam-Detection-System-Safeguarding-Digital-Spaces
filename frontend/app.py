@@ -12,10 +12,12 @@ import plotly.figure_factory as ff
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sms import main as sms_main
+from sms import  sms_main
+from email_main import email_main
+from twitter import twitter_main
 from jobs import main as job_main
 from voicemessage import main as audio_main
-
+from news import  news_main
 # sidebar
 with st.sidebar:
     selected = option_menu('Spam Detection', [
@@ -23,14 +25,10 @@ with st.sidebar:
         'EMAIL',
         'Voice Messages',
         'Twitter Comments',
-        'Youtube Comments',
-        'Review Of Product',
-        'Links',
         'News',
         'Jobs',
-        'Dashboard'
     ],
-        icons=['','activity', 'heart', 'person','person','person','person','bar-chart-fill'],
+        icons=['','activity', 'heart', 'person','person','person'],
         default_index=0)
 
 
@@ -38,9 +36,14 @@ with st.sidebar:
 # Diabetes prediction page
 if selected == 'SMS':
     sms_main()  
+if selected == 'EMAIL':
+    email_main()  
 if selected == 'Jobs':
     job_main() 
 if selected == 'Voice Messages':
     audio_main() 
-    
+if selected == 'Twitter Comments':
+    twitter_main() 
+if selected == 'News':
+    news_main()    
 
