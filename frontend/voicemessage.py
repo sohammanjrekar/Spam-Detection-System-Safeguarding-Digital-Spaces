@@ -74,10 +74,11 @@ def main():
         # Process the audio file on button click
         if st.button("Process Audio"):
             predicted_label_svc = process_audio(audio_file_path, svc_classifier, tfidf_vectorizer)
+            st.subheader("Prediction Result:")
             if predicted_label_svc == 1:
-                st.write("Predicted Label (Support Vector Classifier): fraudulent")
+                st.error("Spam")
             else:
-                st.write("Predicted Label (Support Vector Classifier): not fraudulent")
+                st.success("Not Spam")
 
 if __name__ == '__main__':
     main()
