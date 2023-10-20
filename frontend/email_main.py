@@ -43,7 +43,7 @@ def email_main():
         st.image(image, caption='Spam Detection in GMail', width=200)
     with col2:
         # Input text box
-        user_input = st.text_area("Enter a GMail:")
+        user_input = st.text_area("Enter a GMail:",height=300)
 
     if st.button("Predict"):
         if user_input.strip() == "":

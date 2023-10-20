@@ -43,7 +43,7 @@ def news_main():
         st.image(image, caption='Spam Detection in News Post', width=200)
     with col2:
         # Input text box
-        user_input = st.text_area("Enter an News Post:")
+        user_input = st.text_area("Enter an News Post:",height=300)
 
     if st.button("Predict"):
         if user_input.strip() == "":

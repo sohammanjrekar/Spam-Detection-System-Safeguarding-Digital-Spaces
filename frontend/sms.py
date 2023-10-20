@@ -52,7 +52,7 @@ def sms_main():
         st.image(image, caption='Spam Detection in SMS', width=200)
     with col2:
         # Input text box
-        user_input = st.text_area("Enter an SMS message:")
+        user_input = st.text_area("Enter an SMS message:",height=300)
 
     if st.button("Predict"):
         if user_input.strip() == "":

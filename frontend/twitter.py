@@ -43,7 +43,7 @@ def twitter_main():
         st.image(image, caption='Spam Detection in Twitter Post', width=200)
     with col2:
         # Input text box
-        user_input = st.text_area("Enter a Twitter Post:")
+        user_input = st.text_area("Enter a Twitter Post:",height=300)
 
     if st.button("Predict"):
         if user_input.strip() == "":
