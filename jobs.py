@@ -38,17 +38,21 @@ def main():
 
     # columns
     # no inputs from the user
-    col1, col2 = st.columns(2)
-    with col1:
-        st.image(image, caption='Spam Detection in Job Post', width=200)
+    col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
-        # Input text box
-        user_input = st.text_area("Enter a Job Post:",height=300)
+        st.image(image, caption='Spam Detection in Job Post', width=200)
+        # Input text boxes
+        description = st.text_area("Enter Job Description:", height=100)
+        company_profile = st.text_area("Enter Company Profile:", height=100)
+        requirements = st.text_area("Enter Job Requirements:", height=100)
 
     if st.button("Predict"):
-        if user_input.strip() == "":
-            st.warning("Please enter a Job Post.")
+        if description.strip() == "" or company_profile.strip() == "" or requirements.strip() == "":
+            st.warning("Please enter values for all input fields.")
         else:
+            # Concatenate user inputs into a single text
+            user_input = f"{description} {company_profile} {requirements}"
+
             # Preprocess the user input
             preprocessed_input = preprocess_text(user_input)
 
